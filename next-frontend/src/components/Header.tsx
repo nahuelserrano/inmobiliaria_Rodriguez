@@ -54,7 +54,7 @@ export default function Header() {
           </a>
           <button
             type="button"
-            className={styles.menuButton}
+            className={`${styles.menuButton} ${menuOpen ? styles.menuButtonOpen : ''}`}
             aria-label={menuOpen ? 'Cerrar menú' : 'Abrir menú'}
             aria-expanded={menuOpen}
             onClick={() => setMenuOpen((open) => !open)}
