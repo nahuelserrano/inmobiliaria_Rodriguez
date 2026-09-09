@@ -6,6 +6,10 @@
   --color-gold: #d2a048;
   --color-gold-light: #e0b25d;
   --color-border: #d8e0e8;
+  --color-footer-bg: #283f66;
+  --color-footer-text: #d4dceb;
+  --color-footer-muted: #aebbd0;
+  --color-footer-highlight: #fff;
   --font-global: Arial, Helvetica, sans-serif;
   --font-serif: Georgia, 'Times New Roman', serif;
   color-scheme: light;
@@ -64,10 +68,6 @@ textarea {
 
 .muted {
   color: #6b7280;
-}
-
-.error {
-  color: #b91c1c;
 }
 
 @media (max-width: 800px) {
