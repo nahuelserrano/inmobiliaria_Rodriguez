@@ -4,13 +4,12 @@ import { useEffect, useState } from 'react';
 import type { FormEvent } from 'react';
 import { useRouter, useSearchParams } from 'next/navigation';
 import {
+  ArrowRightLeft,
   Bath,
   BedDouble,
   Building2,
   CarFront,
   ChevronDown,
-  House,
-  Loader2,
   RotateCcw,
   Search,
   Tag,
@@ -62,7 +61,7 @@ export default function PropertyFiltersPanel({ propertyTypes, initial }: Propert
     <form action="/propiedades" method="get" onSubmit={handleSubmit} className="grid gap-3">
       <div className="grid grid-cols-1 gap-3 sm:grid-cols-2 lg:grid-cols-4">
         <label className={selectBoxClass}>
-          <House size={22} className="shrink-0 text-navy" aria-hidden />
+          <ArrowRightLeft size={22} className="shrink-0 text-navy" aria-hidden />
           <span className="flex min-w-0 flex-1 flex-col">
             <span className={captionClass}>Operación</span>
             <select name="operacion" defaultValue={initial.operacion ?? ''} className={selectClass}>
