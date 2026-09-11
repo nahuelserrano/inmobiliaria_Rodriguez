@@ -15,7 +15,7 @@ import {
 import type { PublicPropertyDto } from '@/types/property';
 import { formatPrice, operationLabel, formatLocation, propertyTypeLabel } from '@/lib/format';
 
-export default function PropertyCard({ property }: { property: PublicPropertyDto }) {
+export default function PropertyCard({ property, priority = false }: { property: PublicPropertyDto; priority?: boolean }) {
   const images = property.images ?? [];
   const [index, setIndex] = useState(0);
   const cover = images[index];
@@ -45,6 +45,7 @@ export default function PropertyCard({ property }: { property: PublicPropertyDto
             src={cover}
             alt={property.title}
             fill
+            priority={priority}
             sizes="(min-width: 1024px) 25vw, (min-width: 640px) 50vw, 100vw"
             className="object-cover transition-transform duration-500 group-hover:scale-105"
           />

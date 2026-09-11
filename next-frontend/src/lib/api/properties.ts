@@ -12,8 +12,11 @@ function queryString(query: PropertyQuery) {
   return params.toString();
 }
 
-async function get<T>(path: string): Promise<T> {
-  const response = await fetch(`${API_URL}${path}`, { next: { revalidate: 60 } });
+async function get<T>(path: string, revalidate = 60): Promise<T> {
+  const response = await fetch(`${API_URL}${path}`, {
+    next: { revalidate },
+    signal: AbortSignal.timeout(8000),
+  });
   if (!response.ok) throw new Error(`Error de API (${response.status})`);
   return response.json() as Promise<T>;
 }
@@ -24,7 +27,7 @@ export function fetchProperties(query: PropertyQuery = {}) {
 }
 
 export async function fetchPropertyTypes() {
-  const data = await get<{ types?: string[] }>('/properties/property-types');
+  const data = await get<{ types?: string[] }>('/properties/property-types', 3600);
   return data.types ?? [];
 }
 

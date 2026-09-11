@@ -1,19 +1,36 @@
 import Link from 'next/link';
+import { Suspense } from 'react';
+import Image from 'next/image';
 import PropertyFilters from '@/components/PropertyFilters';
 import PropertyGrid from '@/components/PropertyGrid';
+import PropertyGridSkeleton from '@/components/PropertyGridSkeleton';
 import SearchIntents from '@/components/SearchIntents';
 import { fetchProperties, fetchPropertyTypes } from '@/lib/api/properties';
 
+async function LatestProperties() {
+  const data = await fetchProperties({ page: 1, pageSize: 3 }).catch(() => ({
+    items: [],
+    pagination: { page: 1, pageSize: 3, total: 0, totalPages: 0 },
+  }));
+  return <PropertyGrid properties={data.items} />;
+}
+
 export default async function HomePage() {
-  const [data, propertyTypes] = await Promise.all([
-    fetchProperties({ page: 1, pageSize: 3 }).catch(() => ({ items: [], pagination: { page: 1, pageSize: 3, total: 0, totalPages: 0 } })),
-    fetchPropertyTypes().catch(() => []),
-  ]);
+  const propertyTypes = await fetchPropertyTypes().catch(() => []);
 
   return (
     <div className="-my-8 overflow-hidden">
-      <section aria-labelledby="hero-title" className="min-h-[680px] bg-[linear-gradient(90deg,rgb(16_39_70/78%),rgb(20_44_76/62%)),url('/background-hero.png')] bg-cover bg-center text-white max-[800px]:min-h-[650px]">
-        <div className="mx-auto flex min-h-[680px] w-[min(1120px,calc(100%-2rem))] flex-col justify-between py-28 max-[800px]:min-h-[650px] max-[800px]:py-20 max-[800px]:pb-12 max-[430px]:pt-16">
+      <section aria-labelledby="hero-title" className="relative min-h-[680px] text-white max-[800px]:min-h-[650px]">
+        <Image
+          src="/background-hero.webp"
+          alt=""
+          fill
+          priority
+          sizes="100vw"
+          className="object-cover"
+        />
+        <div aria-hidden className="absolute inset-0 bg-[linear-gradient(90deg,rgb(16_39_70/78%),rgb(20_44_76/62%))]" />
+        <div className="relative mx-auto flex min-h-[680px] w-[min(1120px,calc(100%-2rem))] flex-col justify-between py-28 max-[800px]:min-h-[650px] max-[800px]:py-20 max-[800px]:pb-12 max-[430px]:pt-16">
           <div className="max-w-[920px]">
             <p className="mb-8 flex items-center gap-[0.7rem] text-[0.88rem] font-bold uppercase tracking-[0.3em] text-gold-deep before:block before:h-0.5 before:w-[2.7rem] before:bg-gold-deep max-[430px]:text-[0.68rem] max-[430px]:tracking-[0.2em]">
               Inmobiliaria desde 1947
@@ -38,7 +55,9 @@ export default async function HomePage() {
           </div>
           <Link href="/propiedades" className="text-[1.15rem] font-bold text-brand">Ver todas las propiedades</Link>
         </div>
-        <PropertyGrid properties={data.items} />
+        <Suspense fallback={<PropertyGridSkeleton count={3} />}>
+          <LatestProperties />
+        </Suspense>
       </section>
       <SearchIntents />
     </div>

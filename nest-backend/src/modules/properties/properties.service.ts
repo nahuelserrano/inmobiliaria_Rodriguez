@@ -15,6 +15,9 @@ export class PropertiesService {
   private readonly logger = new Logger(PropertiesService.name);
   private readonly baseUrl: string;
   private readonly slug: string;
+  private propertyTypesCache: { data: PropertyTypesResponse; expiresAt: number } | null = null;
+  private static readonly REQUEST_TIMEOUT_MS = 8000;
+  private static readonly PROPERTY_TYPES_TTL_MS = 10 * 60 * 1000;
 
   constructor(
     private readonly httpService: HttpService,
@@ -39,6 +42,7 @@ export class PropertiesService {
         this.httpService.get<PaginatedPropertiesResponse>(url, {
           params: query,
           headers: { Accept: 'application/json' },
+          timeout: PropertiesService.REQUEST_TIMEOUT_MS,
         }),
       );
 
@@ -56,6 +60,7 @@ export class PropertiesService {
       const response = await firstValueFrom(
         this.httpService.get<PublicPropertyDto>(url, {
           headers: { Accept: 'application/json' },
+          timeout: PropertiesService.REQUEST_TIMEOUT_MS,
         }),
       );
 
@@ -67,14 +72,24 @@ export class PropertiesService {
   }
 
   async getPropertyTypes(): Promise<PropertyTypesResponse> {
+    if (this.propertyTypesCache && this.propertyTypesCache.expiresAt > Date.now()) {
+      return this.propertyTypesCache.data;
+    }
+
     try {
       const url = `${this.baseUrl}/api/public/inmobiliarias/${this.slug}/property-types`;
 
       const response = await firstValueFrom(
         this.httpService.get<PropertyTypesResponse>(url, {
           headers: { Accept: 'application/json' },
+          timeout: PropertiesService.REQUEST_TIMEOUT_MS,
         }),
       );
+
+      this.propertyTypesCache = {
+        data: response.data,
+        expiresAt: Date.now() + PropertiesService.PROPERTY_TYPES_TTL_MS,
+      };
 
       return response.data;
     } catch (error) {

@@ -26,7 +26,7 @@ export default function Header() {
     <header className="fixed inset-x-0 top-0 z-[100] border-b border-line bg-white">
       <div className="mx-auto flex min-h-[120px] w-[min(1600px,calc(100%-3rem))] items-center justify-between gap-8 max-[1100px]:w-[min(100%-2rem,960px)] max-[800px]:min-h-[84px] max-[430px]:w-[calc(100%-1.5rem)] max-[430px]:gap-2">
         <Link href="/" className="block w-[325px] flex-none max-[1100px]:w-[275px] max-[800px]:w-[245px] max-[430px]:w-[205px]" aria-label="Inmobiliaria Rodríguez, inicio">
-          <Image src="/logo.png" alt="Inmobiliaria Emilio F. Rodríguez & Asociados" width={500} height={185} priority className="block h-auto w-full" />
+          <Image src="/logo.webp" alt="Inmobiliaria Emilio F. Rodríguez & Asociados" width={500} height={185} priority className="block h-auto w-full" />
         </Link>
 
         <nav
