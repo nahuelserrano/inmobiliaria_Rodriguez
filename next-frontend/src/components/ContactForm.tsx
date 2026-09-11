@@ -3,9 +3,11 @@
 import { useState } from 'react';
 import type { FormEvent } from 'react';
 import { sendContact } from '@/lib/api/contact';
-import styles from './ContactForm.module.css';
 
 type Status = { type: 'success' | 'error'; text: string } | null;
+
+const inputClass =
+  'w-full border border-line bg-white px-4 py-[0.85rem] text-navy placeholder:text-[#9aa5b1] focus:border-brand focus:outline-none focus:ring-2 focus:ring-brand';
 
 export default function ContactForm() {
   const [sending, setSending] = useState(false);
@@ -37,27 +39,34 @@ export default function ContactForm() {
   }
 
   return (
-    <div className={styles.card}>
-      <h2 className={styles.cardTitle}>Dejanos tu mensaje</h2>
-      <form onSubmit={handleSubmit} className={styles.form} noValidate={false}>
-        <label className={styles.field}>
-          <span className={styles.srOnly}>Nombre y apellido</span>
-          <input name="name" type="text" placeholder="Nombre y apellido" required minLength={2} maxLength={100} autoComplete="name" />
+    <div className="flex h-full flex-col bg-mist p-8 max-[800px]:p-6">
+      <h2 className="mb-5 text-2xl text-navy">Dejanos tu mensaje</h2>
+      <form onSubmit={handleSubmit} className="grid flex-1 gap-[0.85rem]" noValidate={false}>
+        <label className="block">
+          <span className="sr-only">Nombre y apellido</span>
+          <input name="name" type="text" placeholder="Nombre y apellido" required minLength={2} maxLength={100} autoComplete="name" className={inputClass} />
         </label>
-        <label className={styles.field}>
-          <span className={styles.srOnly}>Teléfono</span>
-          <input name="phone" type="tel" placeholder="Teléfono" required minLength={6} maxLength={20} autoComplete="tel" />
+        <label className="block">
+          <span className="sr-only">Teléfono</span>
+          <input name="phone" type="tel" placeholder="Teléfono" required minLength={6} maxLength={20} autoComplete="tel" className={inputClass} />
         </label>
-        <label className={styles.field}>
-          <span className={styles.srOnly}>Mensaje</span>
-          <textarea name="message" placeholder="¿En qué podemos ayudarte?" required minLength={10} maxLength={2000} rows={5} />
+        <label className="block">
+          <span className="sr-only">Mensaje</span>
+          <textarea name="message" placeholder="¿En qué podemos ayudarte?" required minLength={10} maxLength={2000} rows={5} className={`${inputClass} min-h-[130px] resize-y`} />
         </label>
         {status && (
-          <p role={status.type === 'error' ? 'alert' : 'status'} className={`${styles.status} ${status.type === 'error' ? styles.statusError : styles.statusSuccess}`}>
+          <p
+            role={status.type === 'error' ? 'alert' : 'status'}
+            className={`rounded-sm px-4 py-[0.8rem] text-[0.95rem] ${status.type === 'error' ? 'bg-[#fdecea] text-[#9c2b1f]' : 'bg-[#e6f4ea] text-[#1a5c2e]'}`}
+          >
             {status.text}
           </p>
         )}
-        <button type="submit" className={styles.submit} disabled={sending}>
+        <button
+          type="submit"
+          disabled={sending}
+          className="mt-auto cursor-pointer bg-navy p-4 font-bold text-white transition-colors duration-200 hover:bg-navy-soft disabled:cursor-wait disabled:opacity-70 motion-reduce:transition-none"
+        >
           {sending ? 'Enviando…' : 'Enviar consulta'}
         </button>
       </form>

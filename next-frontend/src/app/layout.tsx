@@ -14,7 +14,9 @@ export default function RootLayout({ children }: Readonly<{ children: ReactNode 
     <html lang="es">
       <body>
         <Header />
-        <main className="site-main">{children}</main>
+        <main className="min-h-[calc(100vh-130px)] pb-8 pt-[calc(120px+2rem)] max-[800px]:pt-[calc(84px+2rem)]">
+          {children}
+        </main>
         <Footer />
       </body>
     </html>

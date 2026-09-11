@@ -12,5 +12,14 @@ export default async function PropertiesPage({ searchParams }: { searchParams: R
   Object.entries(query).forEach(([key, value]) => {
     if (key !== 'page' && value !== undefined && value !== '') preserveParams.set(key, value);
   });
-  return <div className="site-container stack"><header><h1>Propiedades</h1><p className="muted">Listado de propiedades disponibles.</p></header><PropertyFilters propertyTypes={types} /><PropertyGrid properties={data.items} pagination={data.pagination} preserveParams={preserveParams} /></div>;
+  return (
+    <div className="container-site grid gap-4">
+      <header>
+        <h1 className="text-4xl font-bold text-navy">Propiedades</h1>
+        <p className="muted">Listado de propiedades disponibles.</p>
+      </header>
+      <PropertyFilters propertyTypes={types} />
+      <PropertyGrid properties={data.items} pagination={data.pagination} preserveParams={preserveParams} />
+    </div>
+  );
 }
