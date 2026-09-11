@@ -9,7 +9,7 @@ const navigation = [
   { href: '/', label: 'Inicio' },
   { href: '/propiedades', label: 'Propiedades' },
   { href: '/nosotros', label: 'Nosotros' },
-  { href: '/#contacto', label: 'Contacto' },
+  { href: '/contacto', label: 'Contacto' },
 ];
 
 function PhoneIcon() {

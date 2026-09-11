@@ -4,7 +4,7 @@ import { Resend } from 'resend';
 import { CreateContactDto } from './dto/create-contact.dto';
 
 const SUCCESS_MESSAGE =
-  '¡Mensaje enviado correctamente! Recibimos tu consulta y nos pondremos en contacto con vos a la brevedad.';
+  'Recibimos tu consulta y nos pondremos en contacto con vos a la brevedad.';
 
 @Injectable()
 export class ContactService {
