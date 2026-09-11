@@ -56,6 +56,12 @@ export function propertyTypeLabel(propertyType: string): string {
     .join(' ');
 }
 
+/** Indica si la operación es un alquiler. */
+export function isRent(operation: string): boolean {
+  const op = operation.toLowerCase();
+  return op === 'alquiler' || op === 'rent' || op === 'renta';
+}
+
 const COORD_REGEX = /^-?\d+(\.\d+)?,\s*-?\d+(\.\d+)?$/;
 
 /** Compone la dirección: barrio, altura y ciudad. Si el "barrio" es en realidad

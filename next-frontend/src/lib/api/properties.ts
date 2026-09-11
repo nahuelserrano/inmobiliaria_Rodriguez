@@ -12,12 +12,22 @@ function queryString(query: PropertyQuery) {
   return params.toString();
 }
 
+export class ApiError extends Error {
+  constructor(
+    message: string,
+    readonly status: number,
+  ) {
+    super(message);
+    this.name = 'ApiError';
+  }
+}
+
 async function get<T>(path: string, revalidate = 60): Promise<T> {
   const response = await fetch(`${API_URL}${path}`, {
     next: { revalidate },
     signal: AbortSignal.timeout(8000),
   });
-  if (!response.ok) throw new Error(`Error de API (${response.status})`);
+  if (!response.ok) throw new ApiError(`Error de API (${response.status})`, response.status);
   return response.json() as Promise<T>;
 }
 

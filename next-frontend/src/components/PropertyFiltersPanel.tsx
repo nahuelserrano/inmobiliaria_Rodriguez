@@ -10,6 +10,7 @@ import {
   Building2,
   CarFront,
   ChevronDown,
+  Loader2,
   RotateCcw,
   Search,
   Tag,
