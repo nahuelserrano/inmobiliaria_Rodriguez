@@ -7,7 +7,7 @@ import styles from './page.module.css';
 
 export default async function HomePage() {
   const [data, propertyTypes] = await Promise.all([
-    fetchProperties({ page: 1, pageSize: 6 }).catch(() => ({ items: [], pagination: { page: 1, pageSize: 6, total: 0, totalPages: 0 } })),
+    fetchProperties({ page: 1, pageSize: 3 }).catch(() => ({ items: [], pagination: { page: 1, pageSize: 3, total: 0, totalPages: 0 } })),
     fetchPropertyTypes().catch(() => []),
   ]);
 

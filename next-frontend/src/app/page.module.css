@@ -109,6 +109,7 @@
 .propertiesHeading > a {
   color: var(--color-blue);
   font-weight: 700;
+  font-size: 1.15rem;
 }
 
 @media (max-width: 800px) {
