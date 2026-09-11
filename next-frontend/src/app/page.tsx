@@ -1,6 +1,7 @@
 import Link from 'next/link';
 import PropertyFilters from '@/components/PropertyFilters';
 import PropertyGrid from '@/components/PropertyGrid';
+import SearchIntents from '@/components/SearchIntents';
 import { fetchProperties, fetchPropertyTypes } from '@/lib/api/properties';
 import styles from './page.module.css';
 
@@ -31,7 +32,7 @@ export default async function HomePage() {
         </div>
         <PropertyGrid properties={data.items} />
       </section>
-      <section className={styles.contact} id="contacto"><h2>Contacto</h2><p>Próximamente podrás contactarnos desde este espacio.</p></section>
+      <SearchIntents />
     </div>
   );
 }
