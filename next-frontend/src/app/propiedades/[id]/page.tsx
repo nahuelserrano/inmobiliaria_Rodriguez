@@ -112,12 +112,6 @@ export default async function PropertyDetailPage({ params }: { params: { id: str
             </span>
           </div>
         </div>
-        <div className="text-right">
-          <p className="text-3xl font-bold text-navy sm:text-4xl">
-            {property.price?.hidden ? 'Consultar' : formatPrice(property.price)}
-          </p>
-          {rent && !property.price?.hidden && <p className="mt-1 text-sm text-navy/70">por mes</p>}
-        </div>
       </div>
 
       <div className="mt-6 grid gap-8 lg:grid-cols-[1.6fr_1fr]">
@@ -127,6 +121,14 @@ export default async function PropertyDetailPage({ params }: { params: { id: str
 
         <aside className="flex min-w-0 flex-col rounded-xl border border-line bg-white p-6 shadow-card">
           <dl className="divide-y divide-line">
+            <div className="pb-4">
+              <dd className="mt-0.5 text-3xl font-bold text-navy sm:text-4xl">
+                {property.price?.hidden ? 'Consultar' : formatPrice(property.price)}
+              </dd>
+              {rent && !property.price?.hidden && (
+                <p className="mt-1 text-sm text-navy/70">por mes</p>
+              )}
+            </div>
             {details.map(({ label, value, Icon }) => (
               <div key={label} className="flex items-start gap-3 py-3 first:pt-0 last:pb-0">
                 <Icon size={20} className="mt-0.5 shrink-0 text-navy" aria-hidden />
