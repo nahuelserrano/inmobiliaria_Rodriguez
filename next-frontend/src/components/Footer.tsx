@@ -3,7 +3,7 @@ import Link from 'next/link';
 
 const navigation = [
   { href: '/propiedades', label: 'Propiedades' },
-  { href: '/sobre-mi', label: 'Nosotros' },
+  { href: '/nosotros', label: 'Nosotros' },
   { href: '/contacto', label: 'Contacto' },
 ];
 
