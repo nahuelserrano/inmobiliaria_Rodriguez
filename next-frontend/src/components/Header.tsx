@@ -2,6 +2,7 @@
 
 import Image from 'next/image';
 import Link from 'next/link';
+import { usePathname } from 'next/navigation';
 import { useState } from 'react';
 
 const navigation = [
@@ -21,6 +22,10 @@ function PhoneIcon({ className }: { className?: string }) {
 
 export default function Header() {
   const [menuOpen, setMenuOpen] = useState(false);
+  const pathname = usePathname();
+
+  const isActive = (href: string) =>
+    href === '/' ? pathname === '/' : pathname === href || pathname.startsWith(`${href}/`);
 
   return (
     <header className="fixed inset-x-0 top-0 z-[100] border-b border-line bg-white">
@@ -42,7 +47,11 @@ export default function Header() {
               key={item.href}
               href={item.href}
               onClick={() => setMenuOpen(false)}
-              className="whitespace-nowrap text-[1.08rem] font-semibold text-navy transition-colors duration-150 hover:text-brand max-[800px]:py-[0.85rem]"
+              className={`whitespace-nowrap text-[1.08rem] font-semibold text-navy transition-colors duration-150 hover:text-brand max-[800px]:py-[0.85rem] min-[801px]:border-b-2 min-[801px]:pb-1 ${
+                isActive(item.href)
+                  ? 'min-[801px]:border-brandRed'
+                  : 'min-[801px]:border-transparent'
+              }`}
             >
               {item.label}
             </Link>

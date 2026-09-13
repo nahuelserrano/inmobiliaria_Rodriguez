@@ -20,6 +20,7 @@ const config: Config = {
           deep: '#d7a343',
           pale: '#d9a441',
         },
+        brandRed: '#e40718',
         line: '#d8e0e8',
         mist: '#e9eff6',
         ink: '#5b6b7f',
