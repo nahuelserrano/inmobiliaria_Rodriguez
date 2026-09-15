@@ -1,8 +1,38 @@
 import type { Metadata } from 'next';
-import ContactForm from '@/components/ContactForm';
-import { MapPin, Phone, Mail } from 'lucide-react';
+import { ArrowRight, Mail, MapPin } from 'lucide-react';
+import InstagramIcon from '@/components/InstagramIcon';
+import WhatsAppIcon from '@/components/WhatsAppIcon';
+import {
+  CONTACT_ADDRESS,
+  CONTACT_EMAIL,
+  INSTAGRAM_HANDLE,
+  INSTAGRAM_URL,
+  PHONE_WA_ADMIN,
+  waLink,
+} from '@/constants/contact';
 
 export const metadata: Metadata = { title: 'Contacto' };
+
+const channels = [
+  {
+    label: 'Alquileres / Ventas',
+    value: '2494 57-5588',
+    href: waLink(),
+    Icon: WhatsAppIcon,
+  },
+  {
+    label: 'Administración',
+    value: '2494 06-9605',
+    href: `https://wa.me/${PHONE_WA_ADMIN}`,
+    Icon: WhatsAppIcon,
+  },
+  {
+    label: 'Instagram',
+    value: INSTAGRAM_HANDLE,
+    href: INSTAGRAM_URL,
+    Icon: InstagramIcon,
+  },
+];
 
 export default function ContactPage() {
   return (
@@ -20,22 +50,47 @@ export default function ContactPage() {
             <MapPin size={24} strokeWidth={1.8} aria-hidden className="mt-[0.15rem] shrink-0 text-gold" />
             <div>
               <p className="font-bold text-navy">Oficina</p>
-              <p className="my-1 text-navy">Belgrano 319, Tandil</p>
+              <p className="my-1 text-navy">{CONTACT_ADDRESS}</p>
               <p className="my-1 text-navy">Lunes a Viernes de 9 a 15 h</p>
               <p className="my-1 text-navy">Sábados de 9:30 a 12:30 h</p>
             </div>
           </li>
           <li className="flex items-start gap-[0.85rem]">
-            <Phone size={24} strokeWidth={1.8} aria-hidden className="mt-[0.15rem] shrink-0 text-gold" />
-            <a href="tel:+542494575588" className="self-center font-bold text-navy">2494 57-5588</a>
-          </li>
-          <li className="flex items-start gap-[0.85rem]">
             <Mail size={24} strokeWidth={1.8} aria-hidden className="mt-[0.15rem] shrink-0 text-gold" />
-            <a href="mailto:inmobiliariarodriguez@yahoo.com.ar" className="self-center break-all font-bold text-navy">inmobiliariarodriguez@yahoo.com.ar</a>
+            <a href={`mailto:${CONTACT_EMAIL}`} className="self-center break-all font-bold text-navy">{CONTACT_EMAIL}</a>
           </li>
         </ul>
       </div>
-      <ContactForm />
+
+      <div className="flex h-full flex-col bg-mist p-8 max-[800px]:p-6">
+        <span aria-hidden className="block h-1 w-12 bg-gold" />
+        <h2 className="mt-4 text-2xl font-bold text-navy">Escribinos</h2>
+        <ul className="mt-6 grid list-none gap-4 p-0">
+          {channels.map(({ label, value, href, Icon }) => (
+            <li key={label}>
+              <a
+                href={href}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="group flex items-center gap-4 rounded-lg bg-white px-4 py-4 shadow-card transition-shadow duration-200 hover:shadow-lift motion-reduce:transition-none"
+              >
+                <span className="flex h-12 w-12 shrink-0 items-center justify-center rounded-full bg-navy text-white">
+                  <Icon size={22} />
+                </span>
+                <span className="min-w-0">
+                  <span className="block text-[0.9rem] font-bold text-navy">{label}</span>
+                  <span className="block truncate text-[0.95rem] text-ink">{value}</span>
+                </span>
+                <ArrowRight
+                  size={20}
+                  aria-hidden
+                  className="ml-auto shrink-0 text-ink transition-transform duration-200 group-hover:translate-x-1 motion-reduce:transition-none"
+                />
+              </a>
+            </li>
+          ))}
+        </ul>
+      </div>
     </div>
   );
 }
