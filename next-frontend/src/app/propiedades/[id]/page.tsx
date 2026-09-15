@@ -10,7 +10,7 @@ import {
   MapPin,
   Maximize,
   Phone,
-  Sparkles,
+  Wrench,
 } from 'lucide-react';
 import Gallery from '@/components/Gallery';
 import PropertyMap from '@/components/map/PropertyMap';
@@ -80,7 +80,7 @@ export default async function PropertyDetailPage({ params }: { params: { id: str
         ]
       : []),
     ...(property.services && property.services.length > 0
-      ? [{ label: 'Servicios', value: property.services.join(', '), Icon: Sparkles }]
+      ? [{ label: 'Servicios', value: property.services.join(', '), Icon: Wrench }]
       : []),
   ];
 
@@ -169,22 +169,6 @@ export default async function PropertyDetailPage({ params }: { params: { id: str
               <p key={i}>{paragraph}</p>
             ))}
           </div>
-
-          {property.services && property.services.length > 0 && (
-            <div className="mt-8">
-              <h3 className="eyebrow">Servicios</h3>
-              <div className="mt-3 flex flex-wrap gap-2">
-                {property.services.map((service) => (
-                  <span
-                    key={service}
-                    className="rounded-full border border-line bg-mist/60 px-3 py-1.5 text-xs font-medium text-navy/80"
-                  >
-                    {service}
-                  </span>
-                ))}
-              </div>
-            </div>
-          )}
         </section>
 
         <section className="min-w-0">
