@@ -1,73 +1,86 @@
 import type { Metadata } from 'next';
-import { Handshake, House, ShieldCheck, User, Users } from 'lucide-react';
+import { Handshake, Scale, ShieldCheck, User, Users } from 'lucide-react';
 
 export const metadata: Metadata = { title: 'Nosotros' };
 
 const team = [
   {
-    name: 'Nombre',
+    name: 'Nombre Apellido',
     role: 'Rol',
   },
   {
-    name: 'Nombre',
+    name: 'Nombre Apellido',
     role: 'Rol',
   },
   {
-    name: 'Nombre',
+    name: 'Nombre Apellido',
     role: 'Rol',
   },
   {
-    name: 'Nombre',
+    name: 'Nombre Apellido',
+    role: 'Rol',
+  },
+  {
+    name: 'Nombre Apellido',
     role: 'Rol',
   },
 ];
 
 const reasons = [
-  { title: 'Experiencia', text: 'Conocemos el mercado y te asesoramos con seguridad.', Icon: Users },
-  { title: 'Compromiso', text: 'Nos involucramos para acompañarte de principio a fin.', Icon: ShieldCheck },
-  { title: 'Cercanía', text: 'Estamos disponibles para ayudarte cuando lo necesites.', Icon: Handshake },
-  { title: 'Transparencia', text: 'Información clara y honesta en todo momento.', Icon: House },
+  { title: 'Experiencia', text: 'Más de 30 años en el mercado inmobiliario de Tandil.', Icon: Users },
+  { title: 'Profesionalismo', text: 'Un equipo capacitado y en constante actualización.', Icon: ShieldCheck },
+  { title: 'Asesoramiento jurídico', text: 'Los abogados del equipo te brindan seguridad en cada paso.', Icon: Scale },
+  { title: 'Compromiso', text: 'Acompañamiento personalizado, de principio a fin.', Icon: Handshake },
 ];
 
 export default function AboutPage() {
   return (
     <>
-      <div className="container-site pb-16 pt-8">
-        <p className="eyebrow flex items-center gap-[0.7rem] after:block after:h-0.5 after:w-14 after:bg-gold">
-          Nuestro equipo
-        </p>
-        <h1 className="mt-4 text-[clamp(2.4rem,4.5vw,3.4rem)] font-bold leading-[1.1] tracking-[-0.02em] text-navy max-[800px]:text-[2rem]">
-          Estamos para acompañarte
-        </h1>
-        <p className="mt-6 max-w-[620px] text-[1.08rem] leading-[1.7] text-ink">
-          Detrás de cada operación hay personas comprometidas con escucharte, asesorarte y encontrar la mejor opción para vos.
-        </p>
+      <section aria-label="Nuestro equipo" className="-mt-8 bg-mist py-16 max-[800px]:py-12">
+        <div className="mx-auto grid w-[min(1480px,calc(100%-2rem))] items-center gap-12 lg:grid-cols-[minmax(0,0.95fr)_minmax(0,1.3fr)]">
+          <div>
+            <p className="eyebrow flex items-center gap-[0.7rem] after:block after:h-0.5 after:w-14 after:bg-gold">
+              Nuestro equipo
+            </p>
+            <h1 className="mt-4 text-[clamp(2.6rem,5vw,4rem)] font-bold leading-[1.05] tracking-[-0.02em] text-navy max-[800px]:text-[2.2rem]">
+              Estamos para<br />
+              <em className="font-serif font-normal italic text-gold">acompañarte</em>
+            </h1>
+            <p className="mt-6 max-w-[520px] text-[1.08rem] leading-[1.7] text-ink">
+              Detrás de cada operación hay personas comprometidas con escucharte, asesorarte y encontrar la mejor opción para vos.
+            </p>
+          </div>
 
-        <ul className="mt-12 grid list-none grid-cols-4 gap-x-8 gap-y-10 p-0 max-[1000px]:grid-cols-2 max-[600px]:grid-cols-1">
+          <ul className="grid list-none grid-cols-4 gap-0 p-0 max-[1000px]:grid-cols-2 max-[1000px]:gap-y-10 max-[600px]:grid-cols-1">
+            {reasons.map(({ title, text, Icon }) => (
+              <li
+                key={title}
+                className="flex flex-col items-center border-l border-line px-4 text-center first:border-l-0 max-[1000px]:border-l-0 max-[1000px]:px-0"
+              >
+                <Icon size={34} strokeWidth={1.4} aria-hidden className="text-gold" />
+                <h2 className="mt-4 text-[1.05rem] font-bold text-navy">{title}</h2>
+                <p className="mt-2 text-[0.95rem] leading-[1.6] text-ink">{text}</p>
+              </li>
+            ))}
+          </ul>
+        </div>
+      </section>
+
+      <section aria-label="Integrantes" className="mx-auto w-[min(1480px,calc(100%-2rem))] py-16 max-[800px]:py-12">
+        <ul className="grid list-none grid-cols-5 gap-6 p-0 max-[1100px]:grid-cols-3 max-[700px]:grid-cols-1">
           {team.map(({ name, role }) => (
-            <li key={name}>
-              <div className="aspect-[4/3] rounded-lg border-2 border-dotted border-line bg-mist/40" />
-              <h2 className="mt-5 font-serif text-[1.5rem] font-bold leading-tight text-navy">{name}</h2>
-              <p className="mt-2 flex items-center gap-2 text-[0.78rem] font-bold uppercase tracking-[0.16em] text-gold">
-                <User size={18} strokeWidth={1.8} aria-hidden className="shrink-0" />
-                {role}
-              </p>
-              <span aria-hidden className="mt-3 block h-0.5 w-12 bg-gold" />
-            </li>
-          ))}
-        </ul>
-      </div>
-
-      <section aria-label="Por qué elegirnos" className="-mb-8 bg-mist py-16 max-[800px]:py-12">
-        <ul className="container-site grid list-none grid-cols-4 gap-0 p-0 max-[1000px]:grid-cols-2 max-[1000px]:gap-y-10 max-[600px]:grid-cols-1">
-          {reasons.map(({ title, text, Icon }) => (
             <li
-              key={title}
-              className="flex flex-col items-center border-l border-line px-8 text-center first:border-l-0 max-[1000px]:border-l-0 max-[1000px]:px-4"
+              key={name}
+              className="flex flex-col overflow-hidden rounded-2xl border border-line bg-white shadow-card"
             >
-              <Icon size={40} strokeWidth={1.4} aria-hidden className="text-gold" />
-              <h3 className="mt-3 text-[1.15rem] font-bold text-navy">{title}</h3>
-              <p className="mt-2 text-[0.95rem] leading-[1.6] text-ink">{text}</p>
+              <div className="flex aspect-[4/3] items-center justify-center bg-mist text-brand/30">
+                <User size={44} strokeWidth={1.2} aria-hidden />
+              </div>
+              <div className="flex flex-1 flex-col p-5">
+                <h2 className="text-[1.3rem] font-bold leading-tight text-navy">{name}</h2>
+                <p className="mt-2 text-[0.7rem] font-bold uppercase tracking-[0.16em] text-gold">{role}</p>
+                <span aria-hidden className="mt-3 block h-0.5 w-12 bg-gold" />
+              </div>
             </li>
           ))}
         </ul>
