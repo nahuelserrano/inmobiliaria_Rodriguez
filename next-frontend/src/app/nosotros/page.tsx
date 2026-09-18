@@ -1,5 +1,5 @@
 import type { Metadata } from 'next';
-import { Handshake, Scale, ShieldCheck, User, Users } from 'lucide-react';
+import { Handshake, Scale, ShieldCheck, Star, User } from 'lucide-react';
 
 export const metadata: Metadata = { title: 'Nosotros' };
 
@@ -27,9 +27,9 @@ const team = [
 ];
 
 const reasons = [
-  { title: 'Experiencia', text: 'Más de 30 años en el mercado inmobiliario de Tandil.', Icon: Users },
+  { title: 'Trayectoria', text: 'Más de 30 años en el mercado inmobiliario de Tandil.', Icon: Star },
   { title: 'Profesionalismo', text: 'Un equipo capacitado y en constante actualización.', Icon: ShieldCheck },
-  { title: 'Asesoramiento jurídico', text: 'Los abogados del equipo te brindan seguridad en cada paso.', Icon: Scale },
+  { title: 'Asesoramiento jurídico', text: 'Contamos con abogados en el equipo para brindarte seguridad en cada paso.', Icon: Scale },
   { title: 'Compromiso', text: 'Acompañamiento personalizado, de principio a fin.', Icon: Handshake },
 ];
 
@@ -37,7 +37,7 @@ export default function AboutPage() {
   return (
     <>
       <section aria-label="Nuestro equipo" className="-mt-8 bg-mist py-16 max-[800px]:py-12">
-        <div className="mx-auto grid w-[min(1480px,calc(100%-2rem))] items-center gap-12 lg:grid-cols-[minmax(0,0.95fr)_minmax(0,1.3fr)]">
+        <div className="mx-auto grid w-[min(1480px,calc(100%-2rem))] items-center gap-12 px-[clamp(1.5rem,5vw,6rem)] lg:grid-cols-[minmax(0,1.15fr)_minmax(0,1fr)]">
           <div>
             <p className="eyebrow flex items-center gap-[0.7rem] after:block after:h-0.5 after:w-14 after:bg-gold">
               Nuestro equipo
@@ -51,15 +51,14 @@ export default function AboutPage() {
             </p>
           </div>
 
-          <ul className="grid list-none grid-cols-4 gap-0 p-0 max-[1000px]:grid-cols-2 max-[1000px]:gap-y-10 max-[600px]:grid-cols-1">
+          <ul className="grid list-none grid-cols-2 gap-x-10 gap-y-7 p-0 max-[600px]:grid-cols-1 max-[600px]:gap-y-6">
             {reasons.map(({ title, text, Icon }) => (
-              <li
-                key={title}
-                className="flex flex-col items-center border-l border-line px-4 text-center first:border-l-0 max-[1000px]:border-l-0 max-[1000px]:px-0"
-              >
-                <Icon size={34} strokeWidth={1.4} aria-hidden className="text-gold" />
-                <h2 className="mt-4 text-[1.05rem] font-bold text-navy">{title}</h2>
-                <p className="mt-2 text-[0.95rem] leading-[1.6] text-ink">{text}</p>
+              <li key={title} className="flex flex-col items-start text-left">
+                <div className="flex items-center gap-3">
+                  <Icon size={34} strokeWidth={1.4} aria-hidden className="shrink-0 text-gold" />
+                  <h2 className="text-[1.15rem] font-bold text-navy">{title}</h2>
+                </div>
+                <p className="mt-1 text-[0.98rem] leading-[1.6] text-ink">{text}</p>
               </li>
             ))}
           </ul>
