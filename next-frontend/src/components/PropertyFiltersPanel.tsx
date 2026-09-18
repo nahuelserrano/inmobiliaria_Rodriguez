@@ -179,7 +179,7 @@ export default function PropertyFiltersPanel({ propertyTypes, initial }: Propert
         <button
           type="submit"
           disabled={pending}
-          className="inline-flex min-h-[58px] items-center justify-center gap-2 rounded-lg bg-gold px-8 font-bold text-[#132f54] transition-colors duration-150 hover:bg-gold-light disabled:cursor-wait disabled:opacity-70"
+          className="inline-flex min-h-[58px] items-center justify-center gap-2 rounded-lg bg-brandRed px-8 font-bold text-white transition-all duration-150 hover:brightness-110 disabled:cursor-wait disabled:opacity-70"
         >
           {pending ? (
             <>

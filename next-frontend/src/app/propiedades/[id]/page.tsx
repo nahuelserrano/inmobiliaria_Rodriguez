@@ -123,7 +123,7 @@ export default async function PropertyDetailPage({ params }: { params: { id: str
           <dl className="divide-y divide-line">
             <div className="pb-4">
               <dd className="mt-0.5 text-3xl font-bold text-navy sm:text-4xl">
-                {property.price?.hidden ? 'Consultar' : formatPrice(property.price)}
+                {property.price ? formatPrice(property.price) : 'Consultar precio'}
               </dd>
               {rent && !property.price?.hidden && (
                 <p className="mt-1 text-sm text-navy/70">por mes</p>

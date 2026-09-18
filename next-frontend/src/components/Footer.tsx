@@ -1,5 +1,6 @@
 import Image from 'next/image';
 import Link from 'next/link';
+import YearsExperience from '@/components/YearsExperience';
 
 const navigation = [
   { href: '/propiedades', label: 'Propiedades' },
@@ -11,14 +12,8 @@ export default function Footer() {
   return (
     <footer className="bg-footer text-footer-text">
       <div className="mx-auto flex min-h-[200px] w-[min(1120px,calc(100%-2rem))] items-center justify-evenly gap-0 py-7 max-[700px]:min-h-0 max-[700px]:flex-col max-[700px]:items-start max-[700px]:gap-11 max-[700px]:py-6">
-        <div className="flex w-[min(24%,240px)] flex-col items-start text-left max-[700px]:hidden">
-          <Image
-            src="/footer-logo.png"
-            alt="Inmobiliaria Emilio F. Rodríguez & Asociados"
-            width={315}
-            height={304}
-            className="block h-auto w-full"
-          />
+        <div className="flex w-[min(30%,320px)] flex-col items-start text-left max-[700px]:hidden">
+          <YearsExperience compact />
         </div>
 
         <nav className="flex w-[min(24%,220px)] flex-col items-start text-left max-[700px]:w-[min(100%,300px)]" aria-label="Navegación del pie de página">

@@ -1,4 +1,5 @@
 import Link from 'next/link';
+import ArrowRightIcon from '@/components/ArrowRightIcon';
 
 const WHATSAPP_SELL_URL =
   'https://wa.me/542494575588?text=Hola%2C%20quiero%20vender%20mi%20propiedad';
@@ -76,21 +77,6 @@ function ShieldIcon({ className }: { className?: string }) {
   );
 }
 
-function ArrowIcon({ className }: { className?: string }) {
-  return (
-    <svg aria-hidden="true" viewBox="0 0 24 24" className={className}>
-      <path
-        d="M4 12h15m-6-7 7 7-7 7"
-        fill="none"
-        stroke="currentColor"
-        strokeWidth="1.8"
-        strokeLinecap="round"
-        strokeLinejoin="round"
-      />
-    </svg>
-  );
-}
-
 const intents = [
   {
     href: '/propiedades?operacion=venta',
@@ -139,7 +125,7 @@ export default function SearchIntents() {
                 <Icon className="h-10 w-10 text-gold transition-transform duration-200 group-hover:scale-[1.35] motion-reduce:transition-none" />
                 <span className="flex items-center justify-between gap-4 text-[1.35rem] font-bold leading-[1.25]">
                   <span>{title}</span>
-                  <ArrowIcon className="h-[22px] w-[22px] shrink-0 transition-transform duration-200 motion-reduce:transition-none" />
+                  <ArrowRightIcon size={22} className="shrink-0 transition-transform duration-200 motion-reduce:transition-none" />
                 </span>
               </Link>
             </li>

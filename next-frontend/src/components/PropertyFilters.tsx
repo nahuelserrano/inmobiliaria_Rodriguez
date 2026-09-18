@@ -17,7 +17,7 @@ export default function PropertyFilters({ propertyTypes }: { propertyTypes: stri
           {propertyTypes.map((type) => <option key={type} value={type}>{propertyTypeLabel(type)}</option>)}
         </select>
       </label>
-      <button type="submit" className="inline-flex h-14 min-w-[145px] cursor-pointer items-center justify-center gap-[0.7rem] bg-gold text-base font-bold text-[#132f54] transition-colors duration-150 hover:bg-gold-light max-[800px]:col-[1/-1] max-[430px]:col-auto">
+      <button type="submit" className="inline-flex h-14 min-w-[145px] cursor-pointer items-center justify-center gap-[0.7rem] bg-brandRed text-base font-bold text-white transition-all duration-150 hover:brightness-110 max-[800px]:col-[1/-1] max-[430px]:col-auto">
         <svg aria-hidden="true" viewBox="0 0 24 24" className="h-[1.35rem] w-[1.35rem] fill-none stroke-current stroke-2">
           <circle cx="10.8" cy="10.8" r="6.3" />
           <path d="m16 16 4.2 4.2" />

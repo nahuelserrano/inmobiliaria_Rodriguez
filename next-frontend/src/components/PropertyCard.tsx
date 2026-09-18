@@ -135,7 +135,7 @@ export default function PropertyCard({ property, priority = false }: { property:
           )}
         </div>
 
-        {property.price?.hidden === false && (
+        {property.price && (
           <div className="mt-4 border-t border-line pt-4">
             <p className="text-xl font-semibold text-navy">
               {formatPrice(property.price)}

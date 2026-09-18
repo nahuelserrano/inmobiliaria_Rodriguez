@@ -4,11 +4,11 @@ import type { PropertyPrice } from '@/types/property';
  * Formatea un precio según moneda. Estilo de la marca:
  *   - ARS: "$ 550.000"
  *   - USD: "USD 120.000"
- * Si el precio está oculto, devuelve "Consultar".
+ * Si el precio está oculto, devuelve "Consultar precio".
  */
 export function formatPrice(price: PropertyPrice): string {
   if (price.hidden) {
-    return 'Consultar';
+    return 'Consultar precio';
   }
   const number = new Intl.NumberFormat('es-AR', { maximumFractionDigits: 0 }).format(
     price.amount,
