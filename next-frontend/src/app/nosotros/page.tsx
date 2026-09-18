@@ -65,7 +65,7 @@ export default function AboutPage() {
         </div>
       </section>
 
-      <section aria-label="Integrantes" className="mx-auto w-[min(1480px,calc(100%-2rem))] py-16 max-[800px]:py-12">
+      <section aria-label="Integrantes" className="mx-auto w-[min(1480px,calc(100%-2rem))] px-[clamp(1rem,3vw,3rem)] py-16 max-[800px]:py-12">
         <ul className="grid list-none grid-cols-5 gap-6 p-0 max-[1100px]:grid-cols-3 max-[700px]:grid-cols-1">
           {team.map(({ name, role }) => (
             <li
