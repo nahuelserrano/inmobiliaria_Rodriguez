@@ -1,64 +1,59 @@
 import type { Metadata } from 'next';
-import { Handshake, Scale, ShieldCheck, Star, User } from 'lucide-react';
+import Image from 'next/image';
+import { Handshake, Scale, ShieldCheck, Star, User, Users } from 'lucide-react';
 
 export const metadata: Metadata = { title: 'Nosotros' };
 
-const team = [
-  {
-    name: 'Nombre Apellido',
-    role: 'Rol',
-  },
-  {
-    name: 'Nombre Apellido',
-    role: 'Rol',
-  },
-  {
-    name: 'Nombre Apellido',
-    role: 'Rol',
-  },
-  {
-    name: 'Nombre Apellido',
-    role: 'Rol',
-  },
-  {
-    name: 'Nombre Apellido',
-    role: 'Rol',
-  },
+const reasons = [
+  { title: 'Experiencia', text: 'Más de 30 años de trayectoria y un profundo conocimiento del mercado inmobiliario de Tandil.', Icon: Star },
+  { title: 'Compromiso', text: 'Nos involucramos en cada operación con dedicación, responsabilidad y atención a cada detalle.', Icon: Handshake },
+  { title: 'Cercanía', text: 'Escuchamos, entendemos y acompañamos personalmente a cada cliente durante todo el proceso.', Icon: Users },
+  { title: 'Transparencia', text: 'Información clara, asesoramiento profesional y honestidad en cada decisión.', Icon: ShieldCheck },
 ];
 
-const reasons = [
-  { title: 'Trayectoria', text: 'Más de 30 años en el mercado inmobiliario de Tandil.', Icon: Star },
-  { title: 'Profesionalismo', text: 'Un equipo capacitado y en constante actualización.', Icon: ShieldCheck },
-  { title: 'Asesoramiento jurídico', text: 'Contamos con abogados en el equipo para brindarte seguridad en cada paso.', Icon: Scale },
-  { title: 'Compromiso', text: 'Acompañamiento personalizado, de principio a fin.', Icon: Handshake },
-];
+const martilleros = ['Emilio F. Rodríguez', 'Araceli M. E. Colombo', 'Francisco O. Rodriguez'];
+
+const abogadas = ['Florencia Mendez', 'Mariana G. Ugarte'];
 
 export default function AboutPage() {
   return (
     <>
-      <section aria-label="Nuestro equipo" className="-mt-8 bg-mist py-16 max-[800px]:py-12">
-        <div className="mx-auto grid w-[min(1480px,calc(100%-2rem))] items-center gap-12 px-[clamp(1.5rem,5vw,6rem)] lg:grid-cols-[minmax(0,1.15fr)_minmax(0,1fr)]">
+      <section
+        aria-label="Nuestro equipo"
+        className="relative -mt-8 overflow-hidden py-16 text-white max-[800px]:py-12"
+      >
+        <Image
+          src="/nosotros-background.webp"
+          alt=""
+          fill
+          priority
+          sizes="100vw"
+          className="object-cover"
+        />
+        <div
+          aria-hidden
+          className="absolute inset-0 bg-[linear-gradient(90deg,rgb(16_39_70/82%),rgb(20_44_76/68%))]"
+        />
+
+        <div className="relative mx-auto grid w-[min(1480px,calc(100%-2rem))] items-center gap-x-[clamp(2.5rem,5vw,5rem)] gap-y-12 px-[clamp(1rem,3vw,3rem)] lg:grid-cols-[minmax(0,0.9fr)_minmax(0,1.7fr)]">
           <div>
-            <p className="eyebrow flex items-center gap-[0.7rem] after:block after:h-0.5 after:w-14 after:bg-gold">
-              Nuestro equipo
-            </p>
-            <h1 className="mt-4 text-[clamp(2.6rem,5vw,4rem)] font-bold leading-[1.05] tracking-[-0.02em] text-navy max-[800px]:text-[2.2rem]">
-              Estamos para<br />
-              <em className="font-serif font-normal italic text-gold">acompañarte</em>
+            <h1 className="text-[clamp(2.6rem,5vw,4rem)] font-bold leading-[1.05] tracking-[-0.02em] text-white max-[800px]:text-[2.2rem]">
+              Experiencia que acompaña<br />
+              <em className="font-serif font-normal italic text-gold">cada decisión</em>
             </h1>
-            <p className="mt-6 max-w-[520px] text-[1.08rem] leading-[1.7] text-ink">
-              Detrás de cada operación hay personas comprometidas con escucharte, asesorarte y encontrar la mejor opción para vos.
+            <p className="mt-6 max-w-[520px] text-[1.08rem] leading-[1.7] text-white/85">
+              Desde 1995 construimos relaciones basadas en la confianza, el conocimiento del mercado y una atención cercana y personalizada.
             </p>
           </div>
 
-          <ul className="grid list-none grid-cols-2 gap-x-10 gap-y-7 p-0 max-[600px]:grid-cols-1 max-[600px]:gap-y-6">
+          <ul className="grid list-none grid-cols-4 gap-x-8 gap-y-8 p-0 max-[1100px]:grid-cols-2 max-[600px]:grid-cols-1">
             {reasons.map(({ title, text, Icon }) => (
               <li key={title} className="flex flex-col items-start text-left">
-                <div className="flex items-center gap-3">
-                  <Icon size={34} strokeWidth={1.4} aria-hidden className="shrink-0 text-gold" />
-                  <h2 className="text-[1.15rem] font-bold text-navy">{title}</h2>
-                </div>
-                <p className="mt-1 text-[0.98rem] leading-[1.6] text-ink">{text}</p>
+                <span className="flex h-14 w-14 items-center justify-center rounded-full bg-white/10">
+                  <Icon size={28} strokeWidth={1.4} aria-hidden className="text-gold" />
+                </span>
+                <h2 className="mt-4 text-[1.15rem] font-bold text-white">{title}</h2>
+                <p className="mt-1 text-[0.98rem] leading-[1.6] text-white/80">{text}</p>
               </li>
             ))}
           </ul>
@@ -66,23 +61,61 @@ export default function AboutPage() {
       </section>
 
       <section aria-label="Integrantes" className="mx-auto w-[min(1480px,calc(100%-2rem))] px-[clamp(1rem,3vw,3rem)] py-16 max-[800px]:py-12">
-        <ul className="grid list-none grid-cols-5 gap-6 p-0 max-[1100px]:grid-cols-3 max-[700px]:grid-cols-1">
-          {team.map(({ name, role }) => (
-            <li
-              key={name}
-              className="flex flex-col overflow-hidden rounded-2xl border border-line bg-white shadow-card"
-            >
-              <div className="flex aspect-[4/3] items-center justify-center bg-mist text-brand/30">
-                <User size={44} strokeWidth={1.2} aria-hidden />
-              </div>
-              <div className="flex flex-1 flex-col p-5">
-                <h2 className="text-[1.3rem] font-bold leading-tight text-navy">{name}</h2>
-                <p className="mt-2 text-[0.7rem] font-bold uppercase tracking-[0.16em] text-gold">{role}</p>
-                <span aria-hidden className="mt-3 block h-0.5 w-12 bg-gold" />
-              </div>
-            </li>
-          ))}
-        </ul>
+        <p className="eyebrow flex items-center gap-[0.7rem] after:block after:h-0.5 after:w-14 after:bg-gold">
+          Equipo profesional
+        </p>
+
+        <div className="mt-8 grid gap-6 lg:grid-cols-2">
+          <article className="rounded-2xl border border-line bg-mist p-[clamp(1.5rem,3vw,2.5rem)]">
+            <header className="flex items-center gap-4">
+              <Users size={38} strokeWidth={1.4} aria-hidden className="shrink-0 text-gold" />
+              <h2 className="text-[clamp(1.4rem,2.5vw,1.8rem)] font-bold leading-tight text-navy">
+                Martilleros y Corredores Públicos
+              </h2>
+            </header>
+            <span aria-hidden className="mt-3 block h-0.5 w-12 bg-gold" />
+
+            <ul className="mt-6 grid list-none grid-cols-3 gap-4 p-0">
+              {martilleros.map((name, index) => (
+                <li key={index} className="flex flex-col items-center text-center">
+                  <div className="flex aspect-square w-full items-center justify-center overflow-hidden rounded-full bg-white text-brand/30">
+                    <User size={40} strokeWidth={1.2} aria-hidden />
+                  </div>
+                  <p className="mt-3 text-[0.95rem] font-bold text-navy">{name}</p>
+                </li>
+              ))}
+            </ul>
+          </article>
+
+          <article className="rounded-2xl border border-line bg-mist p-[clamp(1.5rem,3vw,2.5rem)]">
+            <header className="flex items-center gap-4">
+              <Scale size={38} strokeWidth={1.4} aria-hidden className="shrink-0 text-gold" />
+              <h2 className="text-[clamp(1.4rem,2.5vw,1.8rem)] font-bold leading-tight text-navy">
+                Asesoramiento jurídico integral
+              </h2>
+            </header>
+            <span aria-hidden className="mt-3 block h-0.5 w-12 bg-gold" />
+
+            <ul className="mt-6 flex list-none justify-center gap-4 p-0">
+              {abogadas.map((name, index) => (
+                <li
+                  key={index}
+                  className="flex w-[calc((100%-2rem)/3)] flex-col items-center text-center"
+                >
+                  <div className="flex aspect-square w-full items-center justify-center overflow-hidden rounded-full bg-white text-brand/30">
+                    <User size={40} strokeWidth={1.2} aria-hidden />
+                  </div>
+                  <p className="mt-3 text-[0.95rem] font-bold text-navy">{name}</p>
+                  <p className="mt-1 text-[0.7rem] font-bold uppercase tracking-[0.16em] text-gold">Abogada</p>
+                </li>
+              ))}
+            </ul>
+
+            <p className="mt-6 text-[1.05rem] leading-[1.7] text-ink">
+              Acompañamos cada operación con asesoramiento legal profesional, aportando seguridad, claridad y respaldo jurídico durante todo el proceso.
+            </p>
+          </article>
+        </div>
       </section>
     </>
   );
