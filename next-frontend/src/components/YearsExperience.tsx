@@ -4,7 +4,7 @@ type YearsExperienceProps = {
 };
 
 export default function YearsExperience({ titleId, compact = false }: YearsExperienceProps) {
-  const yearsOfExperience = new Date().getFullYear() - 1995;
+  const yearsOfExperience = '+30';
   const numberClass = compact ? 'text-[clamp(3.5rem,7vw,6rem)]' : 'text-[clamp(6rem,14vw,11rem)]';
   const yearsClass = compact ? 'text-[clamp(1.2rem,2.2vw,2rem)]' : 'text-[clamp(2rem,3.8vw,3.1rem)]';
   const titleClass = compact

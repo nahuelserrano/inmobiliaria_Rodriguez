@@ -40,14 +40,19 @@ export default function Footer() {
       </div>
 
       <div className="relative border-t border-footer-text/80">
-        <div className="absolute inset-x-0 bottom-full mb-3 flex items-center justify-end gap-3 pr-4">
-          <span className="text-lg text-footer-muted max-[1023px]:hidden">Forma parte de</span>
+        <div className="absolute inset-x-0 bottom-full mb-3 flex items-center justify-end pr-4 min-[768px]:hidden">
           <a href="https://tandilprop.com.ar" target="_blank" rel="noopener noreferrer" aria-label="TandilProp">
             <Image src="/logo-tandilprop.png" alt="TandilProp" width={888} height={239} className="block h-10 w-auto lg:h-12" />
           </a>
         </div>
         <div className="flex min-h-16 items-center justify-center px-4 py-5 text-center text-base text-footer-muted">
           © {new Date().getFullYear()} Inmobiliaria Rodríguez. Todos los derechos reservados.
+        </div>
+        <div className="absolute right-4 top-1/2 hidden -translate-y-1/2 items-center gap-3 min-[768px]:flex">
+          <span className="hidden text-lg text-footer-muted min-[1280px]:inline">Forma parte de</span>
+          <a href="https://tandilprop.com.ar" target="_blank" rel="noopener noreferrer" aria-label="TandilProp">
+            <Image src="/logo-tandilprop.png" alt="TandilProp" width={888} height={239} className="block h-10 w-auto lg:h-12" />
+          </a>
         </div>
       </div>
     </footer>
